@@ -1,0 +1,75 @@
+{% embed 'base.html.twig' with {'title': 'Éditer la page', 'subtitle': page.name, 'isFullscreen': '1'} %}
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/latest/styles/github.min.css">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    {% endblock %}
+
+    {% block body %}
+        <div class="container {% if isFullscreen %} fullscreen {% endif %}">
+
+            <div class="generic-card {% if isFullscreen %} fullscreen {% endif %}">
+                <header>
+                    <h2>{{ title }}</h2>
+                    <p class="subtitle"><a href="{{ path('page', {"slug": page.slug}) }}">{{ subtitle }}</a></p>
+                </header>
+                <div class="content {% if isFullscreen %} fullscreen {% endif %}">
+                    {% autoescape false %}
+                        {% for message_danger in app.session.flashBag.get('danger') %}
+                            <div class="alert alert-danger">{{ message_danger }}</div>
+                        {% endfor %}
+                        {% for message_success in app.session.flashBag.get('success') %}
+                            <div class="alert alert-success">{{ message_success }}</div>
+                        {% endfor %}
+                    {% endautoescape %}
+                    <form action="{{ path('page_edit', {'id': page.id}) }}" method="post">
+                        <label for="pageTitle">Titre de la page</label>
+                        <input type="text" name="pageTitle" id="pageTitle" value="{{ page.name }}">
+                        <p></p>
+                        <label for="pageSubtitle">Sous titre de la page</label>
+                        <input type="text" name="pageSubtitle" id="pageSubtitle" value="{{ page.subtitle }}">
+                        <p></p>
+                        <input type="checkbox" id="fullscreen" name="fullscreen" value="1" {% if page.isFullscreen %} checked="checked" {% endif %}>
+                        <label for="fullscreen">Plein écran</label>
+                        <p></p>
+                        <label for="pageContent">Contenu de la page</label>
+                        <textarea name="pageContent" id="pageContent" cols="30" rows="10"></textarea>
+                        <button class="btn btn-info btn-medium" type="submit"><i class="fa fa-edit">&nbsp;&nbsp;</i>Modifier</button>
+                        <a class="btn btn-danger btn-medium" href="{{ path('page_delete', {'id': page.id}) }}"><i class="fa fa-times">&nbsp;&nbsp;</i>Supprimer la page</a>
+                    </form>
+
+                </div>
+
+
+            </div>
+        </div>
+
+    {% endblock %}
+
+    {% block customcss %}
+        <style>
+            .editor-toolbar{
+                background: #fff;
+                opacity: 0.9;
+            }
+        </style>
+    {% endblock %}
+
+    {% block javascripts %}
+        <script src="https://cdn.jsdelivr.net/highlight.js/latest/highlight.min.js"></script>
+        <script src="//cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+        <script>
+            var simplemde = new SimpleMDE({ element: $("#pageContent")[0],
+                spellChecker: false,
+                promptURLs: true,
+                renderingConfig: {
+                    codeSyntaxHighlighting: true
+                }
+            });
+            simplemde.value("{{ convertHtmlToMarkdown(page.content)|e('js')|preg_replace("/\r|\n/", "\\n") }}");
+
+        </script>
+
+    {% endblock %}
+
+{% endembed %}

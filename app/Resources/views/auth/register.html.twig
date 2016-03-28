@@ -1,0 +1,32 @@
+{% embed 'base.html.twig' with {'title' : "S'inscrire"} %}
+
+
+    {% block body %}
+
+        <div class="container fullscreen">
+
+            <div class="generic-card fullscreen">
+                <header>
+                    <h2>{{ title }}</h2>
+                </header>
+                <div class="content fullscreen">
+                    {% if error|default(null) != null %} <div class="alert alert-danger">{{ error }}</div> {% endif %}
+                    {{ form_start(form) }}
+                    {{ form_row(form.username) }}
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.plainPassword.first) }}
+                    {{ form_row(form.plainPassword.second) }}
+
+                    <button type="submit">S'inscrire</button>
+                    {{ form_end(form) }}
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+    {% endblock %}
+
+{% endembed %}

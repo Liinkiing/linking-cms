@@ -1,0 +1,73 @@
+{% embed 'base.html.twig' with {'title': 'Ajouter un page', 'subtitle': "Ajouter un page", 'isFullscreen': '1'} %}
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/latest/styles/github.min.css">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+
+    {% endblock %}
+
+        {% block body %}
+            <div class="container {% if isFullscreen %} fullscreen {% endif %}">
+
+                <div class="generic-card {% if isFullscreen %} fullscreen {% endif %}">
+                    <header>
+                        <h2>{{ title }}</h2>
+                        <p class="subtitle">{{ subtitle }}</p>
+                    </header>
+                    <div class="content {% if isFullscreen %} fullscreen {% endif %}">
+                        {% autoescape false %}
+                            {% for message_danger in app.session.flashBag.get('danger') %}
+                                <div class="alert alert-danger">{{ message_danger }}</div>
+                            {% endfor %}
+                            {% for message_success in app.session.flashBag.get('success') %}
+                                <div class="alert alert-success">{{ message_success }}</div>
+                            {% endfor %}
+                        {% endautoescape %}
+                        <form action="{{ path('page_add') }}" method="post">
+                            <label for="pageTitle">Titre de la page</label>
+                            <input type="text" name="pageTitle" id="pageTitle" required>
+                            <p></p>
+                            <label for="pageSubtitle">Sous titre de la page</label>
+                            <input type="text" name="pageSubtitle" id="pageSubtitle">
+                            <p></p>
+                            <input type="checkbox" id="fullscreen" name="fullscreen" value="1">
+                            <label for="fullscreen">Plein écran</label>
+                            <p></p>
+                            <label for="pageContent">Contenu de la page</label>
+                            <textarea name="pageContent" id="pageContent" cols="30" rows="10"></textarea>
+                            <button class="btn btn-success btn-medium" type="submit"><i class="fa fa-plus"></i>&nbsp;&nbsp;Ajouter la page</button>
+                        </form>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+    {% endblock %}
+
+    {% block customcss %}
+        <style>
+            .editor-toolbar{
+                background: #fff;
+                opacity: 0.9;
+            }
+        </style>
+    {% endblock %}
+
+    {% block javascripts %}
+        <script src="https://cdn.jsdelivr.net/highlight.js/latest/highlight.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+        <script>
+            var simplemde = new SimpleMDE({ element: $("#postContent")[0],
+                spellChecker: false,
+                promptURLs: true,
+                renderingConfig: {
+                    codeSyntaxHighlighting: true
+                }
+            });
+        </script>
+
+    {% endblock %}
+
+{% endembed %}

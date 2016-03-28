@@ -1,0 +1,43 @@
+{% embed 'base.html.twig' with {'title' : "Se conneter", 'isFullscreen' : '0'} %}
+
+
+    {% block body %}
+
+        <div class="container {% if isFullscreen %} fullscreen {% endif %}">
+
+            <div class="generic-card {% if isFullscreen %} fullscreen {% endif %}">
+                <header>
+                    <h2>{{ title }}</h2>
+                </header>
+                <div class="content {% if isFullscreen %} fullscreen {% endif %}">
+                    {% autoescape false %}
+                        {% for message_danger in app.session.flashBag.get('danger') %}
+                            <div class="alert alert-danger">{{ message_danger }}</div>
+                        {% endfor %}
+                        {% for message_success in app.session.flashBag.get('success') %}
+                            <div class="alert alert-success">{{ message_success }}</div>
+                        {% endfor %}
+                    {% endautoescape %}
+                    {% if error %}
+                        <div>{{ error.message }}</div>
+                    {% endif %}
+                    <form action="{{ path('login') }}" method="post">
+
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="_username" value="{{ last_username|default('') }}" />
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="_password" />
+
+                        <button type="submit">Se connecter</button>
+                    </form>
+                    
+                </div>
+
+
+            </div>
+        </div>
+
+
+    {% endblock %}
+
+{% endembed %}
