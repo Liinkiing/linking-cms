@@ -22,7 +22,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getRepository(Page::class);
         $pages = $em->findAll();
         $token = $this->get('security.token_storage')->getToken()->setAuthenticated(false);
-        return $this->render('default/index.html.twig', ['title' => 'Accueil', 'menu' => $pages, 'address' => $_SERVER['REMOTE_ADDR']]);
+        return $this->render('default/index.html.twig', ['title' => 'Accueil', 'menu' => $pages]);
     }
 
 
