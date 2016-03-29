@@ -23,7 +23,6 @@ class AppExtension extends \Twig_Extension
      */
     public function getName()
     {
-        // TODO: Implement getName() method.
         return 'GenerateColor';
     }
 
