@@ -27,7 +27,8 @@ class AdminController extends Controller
      * @Route("/", name="admin_index")
      */
     public function indexAction(Request $request){
-        return $this->render('admin/index.html.twig');
+        return $this->render('admin/index.html.twig', ['test']);
+
 
     }
 
