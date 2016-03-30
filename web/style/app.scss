@@ -2,7 +2,7 @@
 @import "components/roboto";
 @import "components/colors";
 
-$container-width: 50%;
+$container-width: 1000px;
 $nav-height: 70px;
 $margin-between-cards: 100px;
 
@@ -45,6 +45,7 @@ table {
 
             &.actions {
                 text-align: center;
+                width: 275px;
             }
 
             &.third {

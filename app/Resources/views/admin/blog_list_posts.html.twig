@@ -42,7 +42,7 @@
                                 <td>{{ post.author.username }}</td>
                                 <td>{{ post.category.name }}</td>
                                 <td style="width:14%;">{{ post.createdAt|date('d/m/Y') }} <span style="color: rgba(255,255,255,0.5);">{{ post.createdAt|date('H:i') }}</span></td>
-                                <td style="width: 24%;" class="actions"><a class ="btn btn-info" href="{{ path('blog_edit_post', {'id': post.id }) }}"><i class="fa fa-edit">&nbsp;&nbsp;</i>Éditer</a><a class="btn btn-danger" href="{{ path('blog_post_delete', {"id": post.id}) }}"><i class="fa fa-times">&nbsp;&nbsp;</i>Supprimer</a></td>
+                                <td class="actions"><a class ="btn btn-info" href="{{ path('blog_edit_post', {'id': post.id }) }}"><i class="fa fa-edit">&nbsp;&nbsp;</i>Éditer</a><a class="btn btn-danger" href="{{ path('blog_post_delete', {"id": post.id}) }}"><i class="fa fa-times">&nbsp;&nbsp;</i>Supprimer</a></td>
                             </tr>
                         {% endfor %}
                         </tbody>
