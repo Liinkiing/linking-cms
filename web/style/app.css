@@ -399,7 +399,8 @@ table {
     padding: 20px;
     border: 1px solid #434b55; }
     table tbody td.actions {
-      text-align: center; }
+      text-align: center;
+      width: 275px; }
     table tbody td.third {
       width: 75%; }
 
@@ -583,7 +584,7 @@ p.subtitle {
       text-align: justify; }
 
 .container {
-  width: 50%;
+  width: 1000px;
   margin: 100px auto; }
   .container.fullscreen {
     width: 100%;
@@ -601,7 +602,7 @@ a {
   background-color: #3d454d;
   height: 70px; }
   .nav .container {
-    width: 50%;
+    width: 1000px;
     margin: 0 auto; }
   .nav .brand {
     font-size: 1.5em;
