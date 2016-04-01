@@ -37,7 +37,7 @@
                                 <td style="width: 48%; "><a href="{% if app.user.username == user.username %} {{ path('my_profile') }} {% else %} {{ path('profile', {"username" : user.username}) }} {% endif %}">{{ user.username }}</a></td>
                                 <td>{{ user.email }}</td>
                                 <td>{{ user.posts|length }}</td>
-                                <td style="width:17%;">{{ user.createdAt|date('d/m/Y') }} <span style="color: rgba(255,255,255,0.5);">{{ user.createdAt|date('H:i') }}</span></td>
+                                <td style="width:17%;">{{ user.createdAt|date('d/m/Y') }} <span class="hour">{{ user.createdAt|date('H:i') }}</span></td>
                                 <td style="width: 45%;" class="actions"><a class ="btn btn-info" href="{{ path('edit_profile', {"username": user.username}) }}"><i class="fa fa-edit">&nbsp;&nbsp;</i>Éditer</a>{% if app.user.username != user.username %}<a class="btn btn-danger" href="{{ path('delete_profile', {"username": user.username}) }}"><i class="fa fa-times">&nbsp;&nbsp;</i>Supprimer</a>{% endif %}</td>
                             </tr>
                         {% endfor %}

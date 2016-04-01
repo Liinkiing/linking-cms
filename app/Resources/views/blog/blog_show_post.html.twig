@@ -39,7 +39,7 @@
                         </div>
                     </div>
 
-                    {% if is_granted('ROLE_ADMIN') %}
+                    {% if is_granted('ROLE_ADMIN') or (is_granted('ROLE_WRITER') and post.author.username == app.user.username) %}
                         <hr>
                         {% if post.createdAt != post.editedAt %}
                             <div class="last-edited">
@@ -57,31 +57,22 @@
                     {% else %}
                         <h3>Commentaire{% if post.comments|length > 1 %}s{% endif %} ({{ post.comments|length }})</h3>
                     {% endif %}
-                    <div class="comments">
-                        <ul>
+                        <ul class="comments">
                             {% for comment in post.comments|reverse %}
-                                <li><div class="comment">
-                                        <div class="comment-author">
-                                            {{ comment.author.username }}
-                                        </div>
-                                        <div class="comment-content">
-                                            {{ comment.content }}
-                                        </div>
-                                        <div class="comment-date">
-                                            {{ comment.createdAt|date('d/m/Y H:i') }}
-                                        </div>
+                                <li class="comment">
+                                        <div class="comment-author">{{ comment.author.username }}</div>
+                                        <div class="comment-content">{{ comment.content }}</div>
                                         {% if is_granted('ROLE_MOD') or comment.author.username == app.user.username|default('') %}
                                         <form action="{{ path('blog_delete_comment_from_post', {
                                             'day': post.createdAt|date('d'), 'month': post.createdAt|date('m'), 'year': post.createdAt|date('Y'), 'slug': post.slug, 'id': comment.id}) }}" method="post">
-                                                <button type="submit">Supprimer le commentaire</button>
+                                                <button class="btn btn-danger" style="width: 250px; margin-top: 20px" type="submit"><i class="fa fa-close">&nbsp;&nbsp;</i>Supprimer le commentaire</button>
                                         </form>
                                         {% endif %}
-                                    </div>
+                                        <div class="comment-date">{{ comment.createdAt|date('d/m/Y ') }}<span class="hour"> | {{ comment.createdAt|date('H:i') }}</span></div>
                                 </li>
                             {% endfor %}
                         </ul>
 
-                    </div>
                     {% if app.user %}
 
                         <form action="{{ path('blog_add_comment_to_post', { 'day': post.createdAt|date('d'), 'month': post.createdAt|date('m'), 'year': post.createdAt|date('Y'), 'slug': post.slug}) }}" method="post">
