@@ -18,7 +18,8 @@
                         {% for message_success in app.session.flashBag.get('success') %}
                             <div class="alert alert-success">{{ message_success }}</div>
                         {% endfor %}
-
+                        {% if is_granted('ROLE_WRITER') %}
+                            <a href="{{ path('blog_add_post') }}" class="btn btn-success btn-medium"><i class="fa fa-plus"></i>&nbsp;&nbsp;Ajouter un article</a><hr>{% endif %}
                         {% for post in posts %}
                             <h2><a href="{{ path('blog_show_post', {
                                     'day': post.createdAt|date('d'),

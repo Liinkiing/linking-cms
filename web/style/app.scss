@@ -417,6 +417,10 @@ a {
     margin: 0 0 1.5em 0;
 }
 
+span.hour {
+    color: rgba(255,255,255,0.5);
+}
+
 hr {
     border: 0;
     border-bottom: solid 1px #434b55;
@@ -492,7 +496,59 @@ form {
 
 
 
+.comments {
 
+    list-style-type: none;
+    padding-left: 0;
+
+    & .comment {
+        position: relative;
+        padding: 30px;
+        border-bottom: 1px solid #434b55;
+        &:last-of-type{
+            border-bottom: none;
+        }
+        &:nth-child(2n+1){
+            background-color: #383F47
+        }
+
+        & button {
+            margin-top: 10px;
+        }
+    }
+
+    & .comment-{
+        &author {
+            margin-bottom: 10px;
+
+            &::before {
+                font-family: FontAwesome;
+                content: '\f007';
+                margin-right: 10px;
+            }
+
+        }
+        &content {
+            margin-top: 13px;
+            word-wrap: break-word;
+            display: inline-block;
+            width: 820px;
+
+        }
+        &date {
+            display: inline-block;
+            position: absolute;
+            bottom: 28px;
+            right: 33px;
+            &::before {
+                font-family: FontAwesome;
+                content: '\f073\020';
+            }
+
+        }
+    }
+
+}
 
 
 /* $activeColor: #c0392b; //red */

@@ -18,13 +18,13 @@ use AppBundle\Form\UserType;
 
 /**
  * @Route("/admin", name="admin_index")
- * @Security("has_role('ROLE_ADMIN')")
  */
 class AdminController extends Controller
 {
 
     /**
      * @Route("/", name="admin_index")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function indexAction(Request $request){
         return $this->render('admin/index.html.twig', ['test']);
@@ -35,6 +35,7 @@ class AdminController extends Controller
 
     /**
      * @Route("/post/", name="blog_list_posts")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function listPostAction(Request $request){
         $em = $this->getDoctrine()->getRepository(Post::class);

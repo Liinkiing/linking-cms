@@ -77,13 +77,16 @@ class BlogController extends Controller
 
     /**
      * @Route("/admin/post/edit/{id}/", name="blog_edit_post", requirements={"day": "\d+", "month": "\d+", "year": "\d+"})
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_ADMIN') or has_role('ROLE_WRITER')")
      */
     public function editPostAction(Request $request, Post $post){
         if(!$post){
             throw $this->createNotFoundException("L'article n'a pas été trouvé");
         }
         $parsedown = new \Parsedown();
+        if($post->getAuthor()->getUsername() != $this->get('security.token_storage')->getToken()->getUsername() && !$this->isGranted('ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException("Vous ne pouvez pas modifier l'article d'un autre");
+        }
         if($request->getMethod() == 'POST'){
             $post->setTitle($request->get('postTitle'));
             $post->setSubtitle($request->get('postSubtitle'));
@@ -93,13 +96,20 @@ class BlogController extends Controller
             $post->setCategory($this->getDoctrine()->getRepository(Category::class)->find($request->get('postCategory')));
             $post->setSlug(self::slugify($post->getTitle()));
             $post->setThumbnailUrl($request->get('postThumbnail'));
-            $em = $this->getDoctrine()->getManager();
-            $em->flush();
-            $this->addFlash('success', 'L\'article a bien été modifié !');
-            return $this->redirectToRoute('blog_show_post', ['day' => $post->getCreatedAt()->format('d'),
-                'month' => $post->getCreatedAt()->format('m'),
-                'year' => $post->getCreatedAt()->format('Y'),
-                'slug' => $post->getSlug()]);
+            $searchPost = $this->getDoctrine()->getRepository(Post::class)->findOneBy(['title' => $post->getTitle()]);
+            if($searchPost == null || $searchPost->getId() == $post->getId()){
+                $em = $this->getDoctrine()->getManager();
+                $em->flush();
+                $this->addFlash('success', 'L\'article a bien été modifié !');
+                return $this->redirectToRoute('blog_show_post', ['day' => $post->getCreatedAt()->format('d'),
+                    'month' => $post->getCreatedAt()->format('m'),
+                    'year' => $post->getCreatedAt()->format('Y'),
+                    'slug' => $post->getSlug()]);
+            } else {
+                $this->addFlash('danger', "L'article existe déjà ! Veuillez choisir un autre nom.");
+                return $this->redirectToRoute('blog_edit_post', ['id' => $post->getId()]);
+            }
+
 
         } else {
             return $this->render('blog/blog_edit_post.html.twig', ['post' => $post, 'categories' => $this->getDoctrine()->getRepository(Category::class)->findAll()]);
@@ -109,7 +119,8 @@ class BlogController extends Controller
 
     /**
      * @Route("/admin/post/add/", name="blog_add_post")
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_ADMIN') or has_role('ROLE_WRITER')")
+     * @Method({"GET", "POST"})
      */
     public function addPostAction(Request $request){
         $parsedown = new \Parsedown();
@@ -132,31 +143,46 @@ class BlogController extends Controller
                 $em->persist($post);
                 $em->flush();
                 $this->addFlash('success', "L'article \"" . $post->getTitle() . "\" a bien été ajouté !");
-                return $this->redirectToRoute('blog_list_posts');
+                if($this->isGranted('ROLE_ADMIN')){
+                    return $this->redirectToRoute('blog_list_posts');
+                } elseif($this->isGranted('ROLE_WRITER')) {
+                    return $this->redirectToRoute('blog_show_post', ['day' => $post->getCreatedAt()->format('d'),
+                        'month' => $post->getCreatedAt()->format('m'),
+                        'year' => $post->getCreatedAt()->format('Y'),
+                        'slug' => $post->getSlug()]);
+                }
             } else {
                 $this->addFlash('danger', 'L\'article existe déjà ! Mais je t\'ai ai redirigé directement vers la page de modification de cet article, me remercie pas jsuis tron bon');
                 return $this->redirectToRoute('blog_edit_post', ['id' => $searchPost->getId()]);
 
             }
-        } else {
+        }
+        else
+        {
             return $this->render('blog/blog_add_post.html.twig', ['categories' => $this->getDoctrine()->getRepository(Category::class)->findAll()]);
-
         }
     }
 
     /**
      * @Route("/admin/post/delete/{id}", name="blog_post_delete")
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_ADMIN') or has_role('ROLE_WRITER')")
      */
     public function deletePostAction(Request $request, Post $post){
         if(!$post){
             throw $this->createNotFoundException('L\'article n\'a pas été troué !');
         }
+        if($post->getAuthor()->getUsername() != $this->get('security.token_storage')->getToken()->getUsername() && !$this->isGranted('ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException("Vous ne pouvez pas supprimer l'article d'un autre");
+        }
         $em = $this->getDoctrine()->getManager();
         $em->remove($post);
         $em->flush();
         $this->addFlash('success', "L'article à bien été supprimé !");
-        return $this->redirectToRoute('blog_list_posts');
+        if($this->isGranted('ROLE_ADMIN')){
+            return $this->redirectToRoute('blog_list_posts');
+        } elseif ($this->isGranted('ROLE_WRITER')){
+            return $this->redirectToRoute('blog_index');
+        }
     }
 
 

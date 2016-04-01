@@ -661,6 +661,9 @@ a {
 .icon-container {
   margin: 0 0 1.5em 0; }
 
+span.hour {
+  color: rgba(255, 255, 255, 0.5); }
+
 hr {
   border: 0;
   border-bottom: solid 1px #434b55;
@@ -708,6 +711,39 @@ form {
 
 .role-description {
   color: #cccccc; }
+
+.comments {
+  list-style-type: none;
+  padding-left: 0; }
+  .comments .comment {
+    position: relative;
+    padding: 30px;
+    border-bottom: 1px solid #434b55; }
+    .comments .comment:last-of-type {
+      border-bottom: none; }
+    .comments .comment:nth-child(2n+1) {
+      background-color: #383F47; }
+    .comments .comment button {
+      margin-top: 10px; }
+  .comments .comment-author {
+    margin-bottom: 10px; }
+    .comments .comment-author::before {
+      font-family: FontAwesome;
+      content: '\f007';
+      margin-right: 10px; }
+  .comments .comment-content {
+    margin-top: 13px;
+    word-wrap: break-word;
+    display: inline-block;
+    width: 820px; }
+  .comments .comment-date {
+    display: inline-block;
+    position: absolute;
+    bottom: 28px;
+    right: 33px; }
+    .comments .comment-date::before {
+      font-family: FontAwesome;
+      content: '\f073\020'; }
 
 /* $activeColor: #c0392b; //red */
 /* $background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/13460/dark_wall.png'); */
