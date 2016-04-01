@@ -517,8 +517,6 @@ p.subtitle {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.26); }
   .greetings footer, .greetings header {
     z-index: 1; }
-  .greetings header {
-    margin-bottom: 60px; }
   .greetings footer {
     margin-top: 100px;
     position: relative;
