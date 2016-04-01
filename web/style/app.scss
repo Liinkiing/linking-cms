@@ -2,14 +2,36 @@
 @import "components/roboto";
 @import "components/colors";
 
-$container-width: 1000px;
+$container-width: 1200px;
 $nav-height: 70px;
 $margin-between-cards: 100px;
 
 //noinspection CssOptimizeSimilarProperties
 
+* {
+    box-sizing: border-box;
+}
+
 .editor-preview-side, .editor-preview-active-side {
     color: black;
+}
+
+footer.footer {
+    height: 200px;
+    background-color: #2b3036;
+    display: flex;
+    align-content: center;
+
+    & .container {
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        width: $container-width;
+        padding: 60px;
+        text-align: center;
+    }
 }
 
 table {
@@ -45,7 +67,7 @@ table {
 
             &.actions {
                 text-align: center;
-                width: 275px;
+                width: 325px;
             }
 
             &.third {
@@ -60,7 +82,7 @@ table {
 
 .btn {
     display: inline-block;
-    width: 100px;
+    width: 120px;
     text-align: center;
     padding: 5px;
     margin-right: 20px;
