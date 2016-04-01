@@ -378,8 +378,26 @@ th {
   src: url("/font/roboto/Roboto-Bold.eot");
   src: url("/font/roboto/Roboto-Bold.eot?#iefix") format("embedded-opentype"), url("/font/roboto/Roboto-Bold.woff2") format("woff2"), url("/font/roboto/Roboto-Bold.woff") format("woff"), url("/font/roboto/Roboto-Bold.ttf") format("truetype");
   font-weight: 700; }
+* {
+  box-sizing: border-box; }
+
 .editor-preview-side, .editor-preview-active-side {
   color: black; }
+
+footer.footer {
+  height: 200px;
+  background-color: #2b3036;
+  display: flex;
+  align-content: center; }
+  footer.footer .container {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    width: 1200px;
+    padding: 60px;
+    text-align: center; }
 
 table {
   width: 100%; }
@@ -400,13 +418,13 @@ table {
     border: 1px solid #434b55; }
     table tbody td.actions {
       text-align: center;
-      width: 275px; }
+      width: 325px; }
     table tbody td.third {
       width: 75%; }
 
 .btn {
   display: inline-block;
-  width: 100px;
+  width: 120px;
   text-align: center;
   padding: 5px;
   margin-right: 20px;
@@ -584,7 +602,7 @@ p.subtitle {
       text-align: justify; }
 
 .container {
-  width: 1000px;
+  width: 1200px;
   margin: 100px auto; }
   .container.fullscreen {
     width: 100%;
@@ -602,7 +620,7 @@ a {
   background-color: #3d454d;
   height: 70px; }
   .nav .container {
-    width: 1000px;
+    width: 1200px;
     margin: 0 auto; }
   .nav .brand {
     font-size: 1.5em;

@@ -1,4 +1,4 @@
-{% embed 'base.html.twig' with {'title' : "Se conneter", 'isFullscreen' : '0'} %}
+{% embed 'base.html.twig' with {'title' : "Se connecter", 'isFullscreen' : '0'} %}
 
 
     {% block body %}
@@ -23,9 +23,9 @@
                     {% endif %}
                     <form action="{{ path('login') }}" method="post">
 
-                        <label for="username">Username:</label>
+                        <label for="username">Nom d'utilisateur</label>
                         <input type="text" id="username" name="_username" value="{{ last_username|default('') }}" />
-                        <label for="password">Password:</label>
+                        <label for="password">Mot de passe:</label>
                         <input type="password" id="password" name="_password" />
 
                         <button type="submit">Se connecter</button>

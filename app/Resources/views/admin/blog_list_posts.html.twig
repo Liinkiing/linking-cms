@@ -34,14 +34,14 @@
 
                         {% for post in posts %}
                             <tr>
-                                <td style="width: 48%;"><a href="{{ path('blog_show_post', {
+                                <td><a href="{{ path('blog_show_post', {
                                         'day': post.createdAt|date('d'),
                                         'month': post.createdAt|date('m'),
                                         'year': post.createdAt|date('Y'),
                                         'slug': post.slug}) }}">{{ post.title }}</a> <span class="post-description">{{ post.subtitle }}</span></td>
                                 <td>{{ post.author.username }}</td>
                                 <td>{{ post.category.name }}</td>
-                                <td style="width:14%;">{{ post.createdAt|date('d/m/Y') }} <span style="color: rgba(255,255,255,0.5);">{{ post.createdAt|date('H:i') }}</span></td>
+                                <td>{{ post.createdAt|date('d/m/Y') }} <span style="color: rgba(255,255,255,0.5);">{{ post.createdAt|date('H:i') }}</span></td>
                                 <td class="actions"><a class ="btn btn-info" href="{{ path('blog_edit_post', {'id': post.id }) }}"><i class="fa fa-edit">&nbsp;&nbsp;</i>Éditer</a><a class="btn btn-danger" href="{{ path('blog_post_delete', {"id": post.id}) }}"><i class="fa fa-times">&nbsp;&nbsp;</i>Supprimer</a></td>
                             </tr>
                         {% endfor %}
