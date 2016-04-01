@@ -1,4 +1,4 @@
-{% embed 'base.html.twig' with {'title': 'Admin', 'isFullscreen': '1', 'subtitle': "Espace d'administration"} %}
+{% embed 'base.html.twig' with {'title': 'Admin', 'isFullscreen': '1', 'subtitle': "Espace d'administration", "randomHeaderColors": '1', 'randomHeaderColors': '1'} %}
 
 
     {% block body %}
@@ -42,5 +42,18 @@
 
     {% endblock %}
 
+
+    {% block customcss %}
+
+        {% if randomHeaderColors %}
+            <style>
+                .generic-card header {
+                    background: url("{{ asset('img/overlay.png') }}"), url("{{ asset('img/svg/header-bg.svg') }}"), linear-gradient(45deg, {{ generateColor() }} 20%, {{ generateColor() }} 80%) center, center, center;
+                }
+
+            </style>
+        {% endif %}
+
+    {% endblock %}
 
 {% endembed %}

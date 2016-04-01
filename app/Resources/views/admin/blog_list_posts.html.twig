@@ -1,4 +1,4 @@
-{% embed 'base.html.twig' with {'title': 'Articles', 'subtitle': "Liste des articles", 'isFullscreen': '1'} %}
+{% embed 'base.html.twig' with {'title': 'Articles', 'subtitle': "Liste des articles", 'isFullscreen': '1', 'randomHeaderColors': '1'} %}
 
 
     {% block body %}
@@ -57,6 +57,19 @@
 
             </div>
         </div>
+
+    {% endblock %}
+
+    {% block customcss %}
+
+        {% if randomHeaderColors %}
+            <style>
+                .generic-card header {
+                    background: url("{{ asset('img/overlay.png') }}"), url("{{ asset('img/svg/header-bg.svg') }}"), linear-gradient(45deg, {{ generateColor() }} 20%, {{ generateColor() }} 80%) center, center, center;
+                }
+
+            </style>
+        {% endif %}
 
     {% endblock %}
 
