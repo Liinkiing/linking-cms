@@ -18,17 +18,20 @@
                             <div class="alert alert-success">{{ message_success }}</div>
                         {% endfor %}
                     {% endautoescape %}
-                    {% if error %}
-                        <div>{{ error.message }}</div>
-                    {% endif %}
                     <form action="{{ path('login') }}" method="post">
-
-                        <label for="username">Nom d'utilisateur</label>
-                        <input type="text" id="username" name="_username" value="{{ last_username|default('') }}" />
-                        <label for="password">Mot de passe:</label>
-                        <input type="password" id="password" name="_password" />
-
-                        <button type="submit">Se connecter</button>
+                        <div class="group">
+                            <input name="_username" type="text" required value="{{ last_username|default('') }}">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Nom d'utilisateur</label>
+                        </div>
+                        <div class="group">
+                            <input name="_password" type="password" required>
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Mot de passe</label>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-medium"><i class="fa fa-check">&nbsp;&nbsp;</i>Se connecter</button>
                     </form>
                     
                 </div>

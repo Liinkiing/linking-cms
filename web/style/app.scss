@@ -53,7 +53,7 @@ table {
 
         & tr {
             border: 1px solid #434b55;
-            &:nth-child(2n+1){
+            &:nth-child(2n+1) {
                 background-color: #383F47;
             }
             &.connected-user {
@@ -90,9 +90,7 @@ table {
     color: whitesmoke;
     font-weight: 400;
 
-
-
-    &:last-child{
+    &:last-child {
         margin-right: 0;
     }
 
@@ -103,13 +101,12 @@ table {
 
     &.btn-medium {
         width: 200px;
-        padding:10px;
-
+        padding: 10px;
 
     }
     &.btn-large {
         width: 300px;
-        padding:15px;
+        padding: 15px;
 
     }
     &.btn-success {
@@ -137,7 +134,6 @@ table {
         color: black;
     }
 }
-
 
 body {
     background-color: #cecece;
@@ -318,7 +314,6 @@ p.subtitle {
             flex-direction: row;
             justify-content: space-between;
 
-
         }
         &.fullscreen {
             padding: 40px 25%;
@@ -418,7 +413,7 @@ a {
 }
 
 span.hour {
-    color: rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, 0.5);
 }
 
 hr {
@@ -429,19 +424,25 @@ hr {
 
 form {
     color: white;
+    margin: 60px 0;
 
-    & input, button, textarea, select {
+    & button, textarea, select {
         color: black;
 
     }
+
+    & label {
+        display: block;
+    }
+
 }
 
-.page-description,.post-description {
+.page-description, .post-description {
 
-    color: rgba(255,255,255,0.4);
-    font-size:12px;
-    line-height:22px;
-    float:right;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 12px;
+    line-height: 22px;
+    float: right;
 }
 
 .align {
@@ -449,11 +450,11 @@ form {
         align-items: stretch;
         align-self: flex-start;
     }
-    &-middle{
+    &-middle {
         align-items: stretch;
         align-self: center;
     }
-    &-right{
+    &-right {
         align-items: stretch;
         align-self: flex-end;
     }
@@ -494,8 +495,6 @@ form {
     color: darken(white, 20%);
 }
 
-
-
 .comments {
 
     list-style-type: none;
@@ -505,10 +504,10 @@ form {
         position: relative;
         padding: 30px;
         border-bottom: 1px solid #434b55;
-        &:last-of-type{
+        &:last-of-type {
             border-bottom: none;
         }
-        &:nth-child(2n+1){
+        &:nth-child(2n+1) {
             background-color: #383F47
         }
 
@@ -517,7 +516,7 @@ form {
         }
     }
 
-    & .comment-{
+    & .comment- {
         &author {
             margin-bottom: 10px;
 
@@ -550,7 +549,6 @@ form {
 
 }
 
-
 /* $activeColor: #c0392b; //red */
 /* $background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/13460/dark_wall.png'); */
 /* .slideOne */
@@ -563,6 +561,7 @@ form {
     border-radius: 50px;
     box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2);
 }
+
 .slideOne label {
     display: block;
     width: 16px;
@@ -579,9 +578,11 @@ form {
     -webkit-transition: all 0.4s ease;
     transition: all 0.4s ease;
 }
+
 .slideOne input[type=checkbox] {
     visibility: hidden;
 }
+
 .slideOne input[type=checkbox]:checked + label {
     left: 37px;
 }
@@ -597,6 +598,7 @@ form {
     border-radius: 50px;
     box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2);
 }
+
 .slideTwo:after {
     content: '';
     position: absolute;
@@ -608,6 +610,7 @@ form {
     border-radius: 50px;
     box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2);
 }
+
 .slideTwo label {
     display: block;
     width: 22px;
@@ -625,6 +628,7 @@ form {
     background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
     background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
 }
+
 .slideTwo label:after {
     content: '';
     width: 10px;
@@ -636,12 +640,15 @@ form {
     border-radius: 50px;
     box-shadow: inset 0px 1px 1px black, 0px 1px 0px rgba(255, 255, 255, 0.9);
 }
+
 .slideTwo input[type=checkbox] {
     visibility: hidden;
 }
+
 .slideTwo input[type=checkbox]:checked + label {
     left: 54px;
 }
+
 .slideTwo input[type=checkbox]:checked + label:after {
     background: #27ae60;
     /*activeColor*/
@@ -658,6 +665,7 @@ form {
     border-radius: 50px;
     box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2);
 }
+
 .slideThree:after {
     content: 'OFF';
     color: #000;
@@ -668,6 +676,7 @@ form {
     font-weight: bold;
     text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.15);
 }
+
 .slideThree:before {
     content: 'ON';
     color: #27ae60;
@@ -677,6 +686,7 @@ form {
     font: 12px/26px Arial, sans-serif;
     font-weight: bold;
 }
+
 .slideThree label {
     display: block;
     width: 34px;
@@ -694,9 +704,11 @@ form {
     transition: all 0.4s ease;
     box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
 }
+
 .slideThree input[type=checkbox] {
     visibility: hidden;
 }
+
 .slideThree input[type=checkbox]:checked + label {
     left: 43px;
 }
@@ -714,6 +726,7 @@ form {
     border-radius: 50px;
     box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
 }
+
 .roundedOne label {
     width: 20px;
     height: 20px;
@@ -726,6 +739,7 @@ form {
     border-radius: 50px;
     box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px white;
 }
+
 .roundedOne label:after {
     content: '';
     width: 16px;
@@ -740,12 +754,15 @@ form {
     border-radius: 50px;
     box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
 }
+
 .roundedOne label:hover::after {
     opacity: 0.3;
 }
+
 .roundedOne input[type=checkbox] {
     visibility: hidden;
 }
+
 .roundedOne input[type=checkbox]:checked + label:after {
     opacity: 1;
 }
@@ -763,6 +780,7 @@ form {
     border-radius: 50px;
     box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
 }
+
 .roundedTwo label {
     width: 20px;
     height: 20px;
@@ -775,6 +793,7 @@ form {
     border-radius: 50px;
     box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px white;
 }
+
 .roundedTwo label:after {
     content: '';
     width: 9px;
@@ -790,12 +809,15 @@ form {
     -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
 }
+
 .roundedTwo label:hover::after {
     opacity: 0.3;
 }
+
 .roundedTwo input[type=checkbox] {
     visibility: hidden;
 }
+
 .roundedTwo input[type=checkbox]:checked + label:after {
     opacity: 1;
 }
@@ -812,6 +834,7 @@ form {
     background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
     box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
 }
+
 .squaredOne label {
     width: 20px;
     height: 20px;
@@ -823,6 +846,7 @@ form {
     background: linear-gradient(to bottom, #222222 0%, #45484d 100%);
     box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px white;
 }
+
 .squaredOne label:after {
     content: '';
     width: 16px;
@@ -836,12 +860,15 @@ form {
     box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
     opacity: 0;
 }
+
 .squaredOne label:hover::after {
     opacity: 0.3;
 }
+
 .squaredOne input[type=checkbox] {
     visibility: hidden;
 }
+
 .squaredOne input[type=checkbox]:checked + label:after {
     opacity: 1;
 }
@@ -858,6 +885,7 @@ form {
     background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
     box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
 }
+
 .squaredTwo label {
     width: 20px;
     height: 20px;
@@ -869,6 +897,7 @@ form {
     background: linear-gradient(to bottom, #222222 0%, #45484d 100%);
     box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px white;
 }
+
 .squaredTwo label:after {
     content: '';
     width: 9px;
@@ -884,12 +913,15 @@ form {
     -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
 }
+
 .squaredTwo label:hover::after {
     opacity: 0.3;
 }
+
 .squaredTwo input[type=checkbox] {
     visibility: hidden;
 }
+
 .squaredTwo input[type=checkbox]:checked + label:after {
     opacity: 1;
 }
@@ -901,6 +933,7 @@ form {
     position: relative;
     margin: 5px auto;
 }
+
 .squaredThree label {
     width: 20px;
     height: 20px;
@@ -913,6 +946,7 @@ form {
     border-radius: 4px;
     box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.4);
 }
+
 .squaredThree label:after {
     content: '';
     width: 9px;
@@ -928,12 +962,15 @@ form {
     -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
 }
+
 .squaredThree label:hover::after {
     opacity: 0.3;
 }
+
 .squaredThree input[type=checkbox] {
     visibility: hidden;
 }
+
 .squaredThree input[type=checkbox]:checked + label:after {
     opacity: 1;
 }
@@ -945,6 +982,7 @@ form {
     position: relative;
     margin: 20px auto;
 }
+
 .squaredFour label {
     width: 20px;
     height: 20px;
@@ -958,6 +996,7 @@ form {
     border-radius: 4px;
     box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
 }
+
 .squaredFour label:after {
     content: '';
     width: 9px;
@@ -973,13 +1012,143 @@ form {
     -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
 }
+
 .squaredFour label:hover::after {
     opacity: 0.5;
 }
+
 .squaredFour input[type=checkbox] {
     visibility: hidden;
 }
+
 .squaredFour input[type=checkbox]:checked + label:after {
     opacity: 1;
 }
 
+form[action="/login"], form[action="/register"] {
+    & .group {
+        position: relative;
+        margin-bottom: 65px;
+    }
+
+    & input {
+        font-size: 18px;
+        padding: 10px 10px 10px 5px;
+        display: block;
+        width: 100%;
+        border: none;
+        background-color: transparent;
+        border-bottom: 1px solid #434b55;
+    }
+
+    & input:focus {
+        outline: none;
+    }
+
+    /* LABEL ======================================= */
+
+
+    & label {
+        color: #999;
+        font-size: 18px;
+        font-weight: normal;
+        position: absolute;
+        pointer-events: none;
+        left: 5px;
+        top: 10px;
+        transition: 0.2s ease all;
+        -moz-transition: 0.2s ease all;
+        -webkit-transition: 0.2s ease all;
+    }
+
+    /* active state */
+    & input:focus ~ label, input:valid ~ label {
+        top: -40px;
+        font-size: 14px;
+        color: #579d69;
+    }
+
+    /* BOTTOM BARS ================================= */
+    & .bar {
+        position: relative;
+        display: block;
+        width: 100%;
+    }
+
+    & .bar:before, .bar:after {
+        content: '';
+        height: 2px;
+        width: 0;
+        bottom: 1px;
+        position: absolute;
+        background: #579d69;
+        transition: 0.2s ease all;
+        -moz-transition: 0.2s ease all;
+        -webkit-transition: 0.2s ease all;
+    }
+
+    & .bar:before {
+        left: 50%;
+    }
+
+    & .bar:after {
+        right: 50%;
+    }
+
+    /* active state */
+    & input:focus ~ .bar:before, input:focus ~ .bar:after {
+        width: 50%;
+    }
+
+    /* HIGHLIGHTER ================================== */
+    & .highlight {
+        position: absolute;
+        height: 60%;
+        width: 100%;
+        top: 25%;
+        left: 0;
+        pointer-events: none;
+        opacity: 0.5;
+    }
+}
+
+/* form starting stylings ------------------------------- */
+
+
+/* active state */
+//input:focus ~ .highlight {
+//    -webkit-animation: inputHighlighter 0.3s ease;
+//    -moz-animation: inputHighlighter 0.3s ease;
+//    animation: inputHighlighter 0.3s ease;
+//}
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+    from {
+        background:  #579d69;
+    }
+    to {
+        width: 0;
+        background: transparent;
+    }
+}
+
+@-moz-keyframes inputHighlighter {
+    from {
+        background:  #579d69;
+    }
+    to {
+        width: 0;
+        background: transparent;
+    }
+}
+
+@keyframes inputHighlighter {
+    from {
+        background:  #579d69;
+    }
+    to {
+        width: 0;
+        background: transparent;
+    }
+}
