@@ -24,18 +24,7 @@
                             {% endfor %}
                         {% endautoescape %}
                         <form action="{{ path('page_add') }}" method="post">
-                            <label for="pageTitle">Titre de la page</label>
-                            <input type="text" name="pageTitle" id="pageTitle" required>
-                            <p></p>
-                            <label for="pageSubtitle">Sous titre de la page</label>
-                            <input type="text" name="pageSubtitle" id="pageSubtitle">
-                            <p></p>
-                            <input type="checkbox" id="fullscreen" name="fullscreen" value="1">
-                            <label for="fullscreen">Plein écran</label>
-                            <p></p>
-                            <label for="pageContent">Contenu de la page</label>
-                            <textarea name="pageContent" id="pageContent" cols="30" rows="10"></textarea>
-                            <button class="btn btn-success btn-medium" type="submit"><i class="fa fa-plus"></i>&nbsp;&nbsp;Ajouter la page</button>
+                            {% embed 'templates/blog_form_page_template.html.twig' with {'editMode': false} %} {% endembed %}
                         </form>
 
                     </div>

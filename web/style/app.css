@@ -676,6 +676,12 @@ form {
     color: black; }
   form label {
     display: block; }
+  form input {
+    padding: 20px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #434b55; }
 
 .page-description, .post-description {
   color: rgba(255, 255, 255, 0.4);
@@ -1171,16 +1177,21 @@ form {
 .squaredFour input[type=checkbox]:checked + label:after {
   opacity: 1; }
 
-form[action="/login"], form[action="/register"] {
+form {
   /* LABEL ======================================= */
   /* active state */
   /* BOTTOM BARS ================================= */
   /* active state */
   /* HIGHLIGHTER ================================== */ }
-  form[action="/login"] .group, form[action="/register"] .group {
+  form .group {
+    display: inline-block;
+    width: 100%;
     position: relative;
     margin-bottom: 65px; }
-  form[action="/login"] input, form[action="/register"] input {
+  form.form-comment {
+    margin: 20px 0; }
+  form input, form select, form textarea {
+    color: white;
     font-size: 18px;
     padding: 10px 10px 10px 5px;
     display: block;
@@ -1188,9 +1199,16 @@ form[action="/login"], form[action="/register"] {
     border: none;
     background-color: transparent;
     border-bottom: 1px solid #434b55; }
-  form[action="/login"] input:focus, form[action="/register"] input:focus {
+  form textarea {
+    max-width: 100%;
+    min-width: 100%; }
+  form input:focus, form textarea:focus {
     outline: none; }
-  form[action="/login"] label, form[action="/register"] label {
+  form label.no-material {
+    color: #579d69;
+    font-size: 14px;
+    margin-bottom: 20px; }
+  form label.material {
     color: #999;
     font-size: 18px;
     font-weight: normal;
@@ -1201,15 +1219,15 @@ form[action="/login"], form[action="/register"] {
     transition: 0.2s ease all;
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all; }
-  form[action="/login"] input:focus ~ label, form[action="/login"] input:valid ~ label, form[action="/register"] input:focus ~ label, form[action="/register"] input:valid ~ label {
+  form input:focus ~ label, form input[type="text"]:valid ~ label, form input[type="email"]:valid ~ label, form input[type="password"]:valid ~ label, form textarea:focus ~ label, form textarea:valid ~ label {
     top: -40px;
     font-size: 14px;
     color: #579d69; }
-  form[action="/login"] .bar, form[action="/register"] .bar {
+  form .bar {
     position: relative;
     display: block;
     width: 100%; }
-  form[action="/login"] .bar:before, form[action="/login"] .bar:after, form[action="/register"] .bar:before, form[action="/register"] .bar:after {
+  form .bar:before, form .bar:after {
     content: '';
     height: 2px;
     width: 0;
@@ -1219,13 +1237,13 @@ form[action="/login"], form[action="/register"] {
     transition: 0.2s ease all;
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all; }
-  form[action="/login"] .bar:before, form[action="/register"] .bar:before {
+  form .bar:before {
     left: 50%; }
-  form[action="/login"] .bar:after, form[action="/register"] .bar:after {
+  form .bar:after {
     right: 50%; }
-  form[action="/login"] input:focus ~ .bar:before, form[action="/login"] input:focus ~ .bar:after, form[action="/register"] input:focus ~ .bar:before, form[action="/register"] input:focus ~ .bar:after {
+  form input:focus ~ .bar:before, form input:focus ~ .bar:after, form textarea:focus ~ .bar:before, form textarea:focus ~ .bar:after {
     width: 50%; }
-  form[action="/login"] .highlight, form[action="/register"] .highlight {
+  form .highlight {
     position: absolute;
     height: 60%;
     width: 100%;
@@ -1255,5 +1273,7 @@ form[action="/login"], form[action="/register"] {
   to {
     width: 0;
     background: transparent; } }
+.buttons {
+  float: right; }
 
 /*# sourceMappingURL=app.css.map */
