@@ -49,9 +49,23 @@
                         <a class="align-right btn btn-info btn-medium" href="{{ path('blog_edit_post', {"id": post.id}) }}"><i class="fa fa-edit">&nbsp;&nbsp;</i>Éditer l'article</a>
                     {% endif %}
 
-
-
                     <hr>
+
+                    {% if app.user %}
+
+                        <form action="{{ path('blog_add_comment_to_post', { 'day': post.createdAt|date('d'), 'month': post.createdAt|date('m'), 'year': post.createdAt|date('Y'), 'slug': post.slug}) }}" method="post">
+                            <div class="group">
+                                <textarea name="commentContent" id="commentContent" cols="120" rows="1" required="required"></textarea>
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label class="material">Entrez votre commentaire</label>
+                            </div>
+                            <div class="buttons">
+                                <button class="btn btn-success btn-medium" type="submit">Poster le commentaire</button>
+                            </div>
+                        </form>
+                    {% endif %}
+
                     {% if post.comments|length == 0 %}
                         <h3>Aucun commentaire</h3>
                     {% else %}
@@ -63,7 +77,7 @@
                                         <div class="comment-author">{{ comment.author.username }}</div>
                                         <div class="comment-content">{{ comment.content }}</div>
                                         {% if is_granted('ROLE_MOD') or comment.author.username == app.user.username|default('') %}
-                                        <form action="{{ path('blog_delete_comment_from_post', {
+                                        <form class="form-comment" action="{{ path('blog_delete_comment_from_post', {
                                             'day': post.createdAt|date('d'), 'month': post.createdAt|date('m'), 'year': post.createdAt|date('Y'), 'slug': post.slug, 'id': comment.id}) }}" method="post">
                                                 <button class="btn btn-danger" style="width: 250px; margin-top: 20px" type="submit"><i class="fa fa-close">&nbsp;&nbsp;</i>Supprimer le commentaire</button>
                                         </form>
@@ -73,13 +87,7 @@
                             {% endfor %}
                         </ul>
 
-                    {% if app.user %}
 
-                        <form action="{{ path('blog_add_comment_to_post', { 'day': post.createdAt|date('d'), 'month': post.createdAt|date('m'), 'year': post.createdAt|date('Y'), 'slug': post.slug}) }}" method="post">
-                            <textarea name="commentContent" id="commentContent" cols="110" rows="10" required="required"></textarea>
-                            <button type="submit">Poster le commentaire</button>
-                        </form>
-                    {% endif %}
 
                 </div>
 

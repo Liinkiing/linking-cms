@@ -23,25 +23,8 @@
                         {% endfor %}
                     {% endautoescape %}
                     <form action="{{ path('blog_add_post') }}" method="post">
-                        <label for="postTitle">Titre de l'article</label>
-                        <input type="text" name="postTitle" id="postTitle" required="required">
-                        <p></p>
-                        <label for="postSubtitle">Sous titre de l'article</label>
-                        <input type="text" name="postSubtitle" id="postSubtitle">
-                        <p></p>
-                        <label for="postThumbnail">Image à la une</label>
-                        <input type="text" name="postThumbnail" id="postThumbnail">
-                        <p></p>
-                        <label for="postCategory">Catégorie : </label>
-                        <select name="postCategory" id="postCategory">
-                            {% for category in categories %}
-                                <option value="{{ category.id }}">{{ category.name }}</option>
-                            {% endfor %}
-                        </select>
-                        <p></p>
-                        <label for="postContent">Contenu de l'article</label>
-                        <textarea name="postContent" id="postContent" cols="30" rows="10" ></textarea>
-                        <button class="btn btn-success btn-medium" type="submit"><i class="fa fa-plus"></i>&nbsp;&nbsp;Ajouter l'article</button>
+                        {% embed 'templates/blog_form_post_template.html.twig' with {'editMode': false} %}
+                        {% endembed %}
                     </form>
 
                 </div>

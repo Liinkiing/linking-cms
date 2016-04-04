@@ -23,15 +23,17 @@
                             <input name="_username" type="text" required value="{{ last_username|default('') }}">
                             <span class="highlight"></span>
                             <span class="bar"></span>
-                            <label>Nom d'utilisateur</label>
+                            <label class="material">Nom d'utilisateur</label>
                         </div>
                         <div class="group">
                             <input name="_password" type="password" required>
                             <span class="highlight"></span>
                             <span class="bar"></span>
-                            <label>Mot de passe</label>
+                            <label class="material">Mot de passe</label>
                         </div>
-                        <button type="submit" class="btn btn-success btn-medium"><i class="fa fa-check">&nbsp;&nbsp;</i>Se connecter</button>
+                        <div class="buttons">
+                            <button type="submit" class="btn btn-success btn-medium"><i class="fa fa-check">&nbsp;&nbsp;</i>Se connecter</button>
+                        </div>
                     </form>
                     
                 </div>

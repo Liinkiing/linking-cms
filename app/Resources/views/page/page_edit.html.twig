@@ -23,19 +23,7 @@
                         {% endfor %}
                     {% endautoescape %}
                     <form action="{{ path('page_edit', {'id': page.id}) }}" method="post">
-                        <label for="pageTitle">Titre de la page</label>
-                        <input type="text" name="pageTitle" id="pageTitle" value="{{ page.name }}">
-                        <p></p>
-                        <label for="pageSubtitle">Sous titre de la page</label>
-                        <input type="text" name="pageSubtitle" id="pageSubtitle" value="{{ page.subtitle }}">
-                        <p></p>
-                        <input type="checkbox" id="fullscreen" name="fullscreen" value="1" {% if page.isFullscreen %} checked="checked" {% endif %}>
-                        <label for="fullscreen">Plein écran</label>
-                        <p></p>
-                        <label for="pageContent">Contenu de la page</label>
-                        <textarea name="pageContent" id="pageContent" cols="30" rows="10"></textarea>
-                        <button class="btn btn-info btn-medium" type="submit"><i class="fa fa-edit">&nbsp;&nbsp;</i>Modifier</button>
-                        <a class="btn btn-danger btn-medium" href="{{ path('page_delete', {'id': page.id}) }}"><i class="fa fa-times">&nbsp;&nbsp;</i>Supprimer la page</a>
+                        {% embed 'templates/blog_form_page_template.html.twig' with {'editMode': true} %} {% endembed %}
                     </form>
 
                 </div>

@@ -27,26 +27,8 @@
                         {% endfor %}
                     {% endautoescape %}
                     <form action="{{ path('blog_edit_post', {'id': post.id}) }}" method="post">
-                        <label for="postTitle">Titre de l'article</label>
-                        <input type="text" name="postTitle" id="postTitle" value="{{ post.title }}">
-                        <p></p>
-                        <label for="postSubtitle">Sous titre de l'article</label>
-                        <input type="text" name="postSubtitle" id="postSubtitle" value="{{ post.subtitle }}">
-                        <p></p>
-                        <label for="postThumbnail">Image à la une</label>
-                        <input type="text" name="postThumbnail" id="postThumbnail" value="{{ post.thumbnailUrl }}">
-                        <p></p>
-                        <label for="postCategory">Catégorie : </label>
-                        <select name="postCategory" id="postCategory">
-                            {% for category in categories %}
-                                <option value="{{ category.id }}" {% if category.id == post.category.id %} selected="selected" {% endif %}>{{ category.name }}</option>
-                            {% endfor %}
-                        </select>
-                        <p></p>
-                        <label for="postContent">Contenu de l'article</label>
-                        <textarea name="postContent" id="postContent" cols="30" rows="10"></textarea>
-                        <button class="btn btn-info btn-medium" type="submit"><i class="fa fa-edit">&nbsp;&nbsp;</i>Modifier</button>
-                        <a class="btn btn-danger btn-medium" href="{{ path('blog_post_delete', {"id": post.id}) }}"><i class="fa fa-times">&nbsp;&nbsp;</i>Supprimer l'article</a>
+                        {% embed 'templates/blog_form_post_template.html.twig' with {'editMode': true} %}
+                        {% endembed %}
                     </form>
 
                 </div>
