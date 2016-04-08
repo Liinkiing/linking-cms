@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -38,11 +39,17 @@ class User implements UserInterface, \Serializable
     private $plainPassword;
 
     /**
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    private $createdAt;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=60)
      */
     private $password;
+
 
     /**
      * @var string
@@ -56,6 +63,12 @@ class User implements UserInterface, \Serializable
      */
     private $roles;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Post", mappedBy="author", cascade={"remove"})
+     */
+    private $posts;
+
+
 
     /**
      * String representation of object
@@ -66,6 +79,19 @@ class User implements UserInterface, \Serializable
     public function serialize()
     {
         return serialize([$this->id, $this->username, $this->password]);
+    }
+
+    /**
+     * @param $role
+     * @return mixed
+     */
+    public function isGranted($role)
+    {
+//        $stringArray = [];
+//        for($i = 0; $i < count($this->getRoles()); $i++){
+//            $stringArray[$i] = $this->getRoles()[$i]->getRole();
+//        }
+        return in_array($role, $this->getRoles());
     }
 
     /**
@@ -99,18 +125,21 @@ class User implements UserInterface, \Serializable
      * Alternatively, the roles might be stored on a ``roles`` property,
      * and populated in any number of different ways when the user object
      * is created.
-     *
-     * @return (Role|string)[] The user roles
+     * @return string[] The user roles
      */
     public function getRoles()
     {
-        $roles = ['ROLE_USER'];
+        $roles = [];
         for ($i = 0; $i < $this->roles->count(); $i++) {
-            $roles[$i + 1] = $this->roles->get($i)->getRole();
+            $roles[$i] = $this->roles->get($i)->getRole();
         }
-        return array_unique($roles);
+        return $roles;
+//        return $this->roles->getValues();
     }
 
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
     public function getRolesObject()
     {
         return $this->roles;
@@ -272,4 +301,52 @@ class User implements UserInterface, \Serializable
         $this->plainPassword = $plainPassword;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param mixed $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @return Post[]
+     */
+    public function getPosts()
+    {
+        return $this->posts;
+    }
+
+
+    /**
+     * Add post
+     *
+     * @param \AppBundle\Entity\Post $post
+     *
+     * @return User
+     */
+    public function addPost(\AppBundle\Entity\Post $post)
+    {
+        $this->posts[] = $post;
+
+        return $this;
+    }
+
+    /**
+     * Remove post
+     *
+     * @param \AppBundle\Entity\Post $post
+     */
+    public function removePost(\AppBundle\Entity\Post $post)
+    {
+        $this->posts->removeElement($post);
+    }
 }

@@ -211,16 +211,16 @@ p.subtitle {
         height: 100%;
     }
 
-    &::after {
-        content: '';
-        display: block;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 160px;
-        background: rgba(lighten($dark-color, 10%), 0.6);
-    }
+    //&::after {
+    //    content: '';
+    //    display: block;
+    //    position: absolute;
+    //    bottom: 0;
+    //    left: 0;
+    //    width: 100%;
+    //    height: 160px;
+    //    background: rgba(lighten($dark-color, 10%), 0.6);
+    //}
 
     position: relative;
     height: 500px;
@@ -230,7 +230,7 @@ p.subtitle {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     background: url('../img/banner.jpg') center no-repeat;
     background-size: cover;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.26);
@@ -316,10 +316,21 @@ p.subtitle {
 
         }
         &.fullscreen {
-            padding: 40px 25%;
+            padding: 40px 20%;
             text-align: justify;
         }
+
+        &.portfolio {
+            display: block;
+        }
     }
+}
+
+.row {
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 40px;
+    align-self: center;
 }
 
 .container {
@@ -378,6 +389,14 @@ a {
             padding-right: 30px;
 
         }
+    }
+
+}
+
+.slider-options {
+
+    & #projectImage:first-of-type {
+        margin-top: 65px;
     }
 
 }
@@ -444,7 +463,7 @@ form {
     }
 }
 
-.page-description, .post-description {
+.page-description, .post-description, .project-description {
 
     color: rgba(255, 255, 255, 0.4);
     font-size: 12px;
@@ -554,6 +573,117 @@ form {
         }
     }
 
+}
+
+a.portfolio-link:hover {
+    color: #d7a965;
+}
+
+.portfolio-item {
+
+    position: relative;
+    display: inline-block;
+    width: 500px;
+    border: 1px solid rgb(67, 75, 85);
+    border-radius: 3px;
+    margin-right: 100px;
+
+    &:last-of-type {
+        margin-right: 0;
+    }
+
+    &::after {
+        transition: all 0.3s;
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: white;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+    }
+
+    &:hover {
+
+        cursor: pointer;
+        &::after {
+            opacity: 0.1;
+        }
+    }
+
+    & .item-thumbnail {
+        height: 280px;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & .item-categories {
+
+            &::before {
+                font-family: FontAwesome;
+                content: '\f02c\020';
+            }
+
+            position: absolute;
+            z-index: 3;
+            top: 0;
+            left: 0;
+            margin: 15px;
+            padding: 12px;
+            background: rgba(0,0,0,0.6);
+
+        }
+
+        & .item-title {
+            z-index: 3;
+
+            & h2 {
+                margin: 0;
+                &::after {
+                    content: none;
+                }
+            }
+
+        }
+
+    }
+
+    & .img-overlay {
+        position: absolute;
+        opacity: 0.3;
+        top: 0;
+        left: 0;
+        background-color: black;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        transition: all 0.2s;
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+    & img {
+        position: absolute;
+        z-index: 1;
+        top: -50%;
+        left: -50%;
+        transition: all 0.2s;
+        width: 186%;
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+
+    & .item-description {
+        padding: 40px;
+        position: relative;
+        z-index: 3;
+
+    }
 }
 
 /* $activeColor: #c0392b; //red */
@@ -1180,4 +1310,42 @@ form {
 
 .buttons {
     float: right;
+}
+
+h2.project-name {
+    background-color: rgba(0, 0, 0, 0.7);
+    display: inline-block;
+    padding: 40px;
+    &::after {
+        content: none;
+    }
+}
+
+.item-platforms {
+    position: absolute;
+    z-index: 3;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.6);
+    bottom: 15px;
+    right: 15px;
+}
+
+ul.platforms {
+    list-style: none;
+    padding: 0;
+    & li {
+        margin-bottom: 10px;
+    }
+}
+
+.project-content {
+    display: inline-block;
+    width: 70%;
+    vertical-align: top;
+}
+
+.project-informations {
+    display: inline-block;
+    border-left: 2px solid #434b55;
+    padding-left: 20px;
 }
