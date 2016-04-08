@@ -30,7 +30,6 @@
 ===================================*/
 
 .bx-wrapper .bx-viewport {
-	box-shadow: 0 0 20px rgba(0,0,0,0.2);
 	border:  5px solid transparent;
 	left: -5px;
 	background: transparent;
