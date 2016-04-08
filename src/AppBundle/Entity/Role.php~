@@ -36,6 +36,12 @@ class Role
     private $role;
 
     /**
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
+
+    /**
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", mappedBy="roles")
      */
     private $users;
@@ -139,5 +145,21 @@ class Role
     public function getUsers()
     {
         return $this->users;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param mixed $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
     }
 }

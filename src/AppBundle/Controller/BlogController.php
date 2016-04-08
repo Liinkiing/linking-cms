@@ -54,9 +54,9 @@ class BlogController extends Controller
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $comment = new Comment();
         $comment->setCreatedAt(new \DateTime('now'))
-        ->setContent($request->get('commentContent'))
-        ->setAuthor($user)
-        ->setPost($post);
+            ->setContent($request->get('commentContent'))
+            ->setAuthor($user)
+            ->setPost($post);
         $this->getDoctrine()->getManager()->persist($comment);
         $this->getDoctrine()->getManager()->flush();
         return $this->redirectToRoute('blog_show_post', ["day" => $day, "month" => $month, "year" => $year, "slug" => $slug]);

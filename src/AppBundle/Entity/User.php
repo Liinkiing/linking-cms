@@ -318,11 +318,35 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * @return Post
+     * @return Post[]
      */
     public function getPosts()
     {
         return $this->posts;
     }
 
+
+    /**
+     * Add post
+     *
+     * @param \AppBundle\Entity\Post $post
+     *
+     * @return User
+     */
+    public function addPost(\AppBundle\Entity\Post $post)
+    {
+        $this->posts[] = $post;
+
+        return $this;
+    }
+
+    /**
+     * Remove post
+     *
+     * @param \AppBundle\Entity\Post $post
+     */
+    public function removePost(\AppBundle\Entity\Post $post)
+    {
+        $this->posts->removeElement($post);
+    }
 }

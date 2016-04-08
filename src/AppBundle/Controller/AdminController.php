@@ -6,6 +6,8 @@ use AppBundle\AppBundle;
 use AppBundle\Entity\Comment;
 use AppBundle\Entity\Page;
 use AppBundle\Entity\Post;
+use AppBundle\Entity\Project;
+use AppBundle\Entity\ProjectCategory;
 use AppBundle\Entity\Role;
 use AppBundle\Entity\User;
 use DateTime;
@@ -17,7 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Form\UserType;
 
 /**
- * @Route("/admin", name="admin_index")
+ * @Route("/admin")
  */
 class AdminController extends Controller
 {
@@ -34,7 +36,7 @@ class AdminController extends Controller
 
 
     /**
-     * @Route("/post/", name="blog_list_posts")
+     * @Route("/posts/", name="blog_list_posts")
      * @Security("has_role('ROLE_ADMIN')")
      */
     public function listPostAction(Request $request){
@@ -44,6 +46,20 @@ class AdminController extends Controller
 
 
     }
+
+    /**
+     * @Route("/projects/", name="portfolio_list_projects")
+     * @Security("has_role('ROLE_ADMIN')")
+     */
+    public function listProjectsAction(Request $request){
+        $em = $this->getDoctrine()->getRepository(Project::class);
+        $projects = $em->findAll();
+        return $this->render('admin/portfolio_list_projects.html.twig', ['projects' => $projects]);
+
+
+    }
+
+
 
 
 
