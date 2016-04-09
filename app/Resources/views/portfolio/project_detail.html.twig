@@ -50,6 +50,12 @@
                                 {% endfor %}
                             </ul>
                         {% endif %}
+                        {% if project.languages is not empty %}
+                            <h3>Langages utilisés</h3>
+                            <ul class="languages">
+                                {{ project.languages|join(", ") }}
+                            </ul>
+                        {% endif %}
                         {% if project.categories is not empty %}
                             <h3>Catégorie{% if project.categories|length > 1 %}s{% endif %}</h3>
                             <p><i class="fa fa-tags">&nbsp;&nbsp;</i>

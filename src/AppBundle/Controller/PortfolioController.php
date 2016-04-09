@@ -65,6 +65,11 @@ class PortfolioController extends Controller
                     $project->addPlatform($platform);
                 }
             }
+            if($request->get('projectLanguages') != null){
+                $languages = $request->get('projectLanguages');
+                $languages = explode(",", trim($languages));
+            } else $languages = null;
+            $project->setLanguages($languages);
             $project->setImageUrl($request->get('projectThumbnail'));
             $project->setProjectImages($request->get('imageUrls'));
             $project->setProjectImagesDescription($request->get('imageDescriptions'));
@@ -119,6 +124,11 @@ class PortfolioController extends Controller
                     $project->addPlatform($platform);
                 }
             }
+            if($request->get('projectLanguages') != null){
+                $languages = $request->get('projectLanguages');
+                $languages = explode(",", trim($languages));
+            } else $languages = null;
+            $project->setLanguages($languages);
             $project->setCreatedAt(new \DateTime());
             $project->setProjectImages($request->get('imageUrls'));
             $project->setProjectImagesDescription($request->get('imageDescriptions'));
