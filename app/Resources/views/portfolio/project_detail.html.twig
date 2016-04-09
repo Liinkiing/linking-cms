@@ -40,7 +40,7 @@
                         {{ project.content|raw }}
                     </div>
 
-                    {% if project.categories is not empty or project.platforms is not empty %}
+                    {% if project.categories is not empty or project.platforms is not empty or project.languages is not empty%}
                     <div class="project-informations">
                         {% if project.platforms is not empty %}
                             <h3>Plateformes disponibles</h3>
