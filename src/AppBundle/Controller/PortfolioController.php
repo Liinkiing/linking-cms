@@ -47,25 +47,24 @@ class PortfolioController extends Controller
             $project->setSlug(self::slugify($project->getName()));
             $project->setDescription($request->get('projectDescription'));
             $project->setContent($parsedown->text($request->get('projectContent')));
+            foreach($project->getCategories() as $category){
+                $project->removeCategory($category);
+            }
             if($request->get('categories') != null){
-                foreach($project->getCategories() as $category){
-                    $project->removeCategory($category);
-                }
                 foreach($request->get('categories') as $categoryId){
                     $category = $this->getDoctrine()->getRepository(ProjectCategory::class)->find($categoryId);
                     $project->addCategory($category);
                 }
             }
+            foreach($project->getPlatforms() as $platform){
+                $project->removePlatform($platform);
+            }
             if($request->get('platforms') != null){
-                foreach($project->getPlatforms() as $platform){
-                    $project->removePlatform($platform);
-                }
                 foreach($request->get('platforms') as $platformId){
                     $platform = $this->getDoctrine()->getRepository(ProjectPlatform::class)->find($platformId);
                     $project->addPlatform($platform);
                 }
             }
-            var_dump('fdp woll test');
             $project->setImageUrl($request->get('projectThumbnail'));
             $project->setProjectImages($request->get('imageUrls'));
             $project->setProjectImagesDescription($request->get('imageDescriptions'));
@@ -151,8 +150,9 @@ class PortfolioController extends Controller
             throw new NotFoundHttpException("Le projet n'a pas été trouvé !");
         }
         $this->getDoctrine()->getManager()->remove($project);
+        $this->getDoctrine()->getManager()->flush();
         $this->addFlash('success', "Le projet a bien été supprimé !");
-        $this->redirectToRoute('portfolio_list_projects');
+        return $this->redirectToRoute('portfolio_list_projects');
     }
 
     static public function slugify($text)

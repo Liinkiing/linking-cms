@@ -532,10 +532,10 @@ p.subtitle {
     opacity: 0.5;
     width: 100%;
     height: 100%; }
-  .greetings nav ul {
+  .greetings ul {
     padding: 0;
     margin: 0; }
-    .greetings nav ul li {
+    .greetings ul li {
       transition: all 0.3s;
       text-transform: uppercase;
       font-weight: 700;
@@ -544,10 +544,10 @@ p.subtitle {
       display: inline-block;
       padding: 20px;
       margin-right: 20px; }
-      .greetings nav ul li:hover {
+      .greetings ul li:hover {
         background: rgba(95, 107, 120, 0.4);
         cursor: pointer; }
-    .greetings nav ul li:last-of-type {
+    .greetings ul li:last-of-type {
       margin-right: 0; }
 
 .features {
@@ -625,6 +625,11 @@ a {
     display: inline-block;
     height: 100%;
     line-height: 70px; }
+
+.project-informations h3 {
+  margin-top: 56px; }
+  .project-informations h3:first-child {
+    margin-top: 0; }
 
 .nav-links {
   display: flex;
@@ -1369,10 +1374,10 @@ h2.project-name {
   bottom: 15px;
   right: 15px; }
 
-ul.platforms {
+ul.platforms, ul.categories {
   list-style: none;
   padding: 0; }
-  ul.platforms li {
+  ul.platforms li, ul.categories li {
     margin-bottom: 10px; }
 
 .project-content {
