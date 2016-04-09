@@ -40,14 +40,24 @@
                         {{ project.content|raw }}
                     </div>
 
+                    {% if project.categories is not empty or project.platforms is not empty %}
                     <div class="project-informations">
-                        <h3>Plateformes disponibles</h3>
-                        <ul class="platforms">
-                            {% for platform in project.platforms %}
-                                <li><i class="fa fa-{{ platform.slug }}">&nbsp;&nbsp;</i>{{ platform.name }}</li>
-                            {% endfor %}
-                        </ul>
+                        {% if project.platforms is not empty %}
+                            <h3>Plateformes disponibles</h3>
+                            <ul class="platforms">
+                                {% for platform in project.platforms %}
+                                    <li><i class="fa fa-{{ platform.slug }}">&nbsp;&nbsp;</i>{{ platform.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        {% if project.categories is not empty %}
+                            <h3>Catégorie{% if project.categories|length > 1 %}s{% endif %}</h3>
+                            <p><i class="fa fa-tags">&nbsp;&nbsp;</i>
+                                {% for category in project.categories %}{{ category.name }}{% if not loop.last %},&nbsp;{% endif %}{% endfor %}
+                            </p>
+                        {% endif %}
                     </div>
+                    {% endif %}
 
 
 

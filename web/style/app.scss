@@ -236,6 +236,7 @@ p.subtitle {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.26);
 
     & nav {
+        }
         & ul {
             padding: 0;
             margin: 0;
@@ -260,7 +261,7 @@ p.subtitle {
         }
     }
 
-}
+
 
 .features {
 
@@ -369,7 +370,22 @@ a {
         height: 100%;
         line-height: $nav-height;
     }
+    //
+    //&.fixed {
+    //    position: fixed;
+    //    width: 100%;
+    //    z-index: 1000;
+    //}
 
+}
+
+.project-informations {
+    h3 {
+        margin-top: 56px;
+        &:first-child {
+            margin-top: 0;
+        }
+    }
 }
 
 .nav-links {
@@ -1330,7 +1346,7 @@ h2.project-name {
     right: 15px;
 }
 
-ul.platforms {
+ul.platforms, ul.categories {
     list-style: none;
     padding: 0;
     & li {
