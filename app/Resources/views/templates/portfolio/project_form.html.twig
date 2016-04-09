@@ -17,6 +17,12 @@
     <span class="bar"></span>
     <label class="material">Image à la une</label>
 </div>
+<div class="group" style=" width: 100%;">
+    <input name="projectLanguages" type="text" {% if editMode %} value="{{ project.languages|join(', ') }}" {% endif %}>
+    <span class="highlight"></span>
+    <span class="bar"></span>
+    <label class="material">Langages utilisés (séparer chaque langage par une virgule)</label>
+</div>
 <h3>Option du slider</h3>
 <hr>
 <div class="slider-options">

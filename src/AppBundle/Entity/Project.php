@@ -74,6 +74,11 @@ class Project
     private $projectImagesDescription;
 
     /**
+     * @ORM\Column(name="languages", type="simple_array", nullable=true)
+     */
+    private $languages;
+
+    /**
      *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\ProjectPlatform", inversedBy="projects")
      */
@@ -388,5 +393,29 @@ class Project
     public function removePlatform(\AppBundle\Entity\ProjectPlatform $platform)
     {
         $this->platforms->removeElement($platform);
+    }
+
+    /**
+     * Set languages
+     *
+     * @param array $languages
+     *
+     * @return Project
+     */
+    public function setLanguages($languages)
+    {
+        $this->languages = $languages;
+
+        return $this;
+    }
+
+    /**
+     * Get languages
+     *
+     * @return array
+     */
+    public function getLanguages()
+    {
+        return $this->languages;
     }
 }
