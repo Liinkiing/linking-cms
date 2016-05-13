@@ -29,7 +29,6 @@ class PortfolioController extends Controller
         if(!$project) {
             throw $this->createNotFoundException('Projet non trouvé !');
         }
-//        var_dump($project->getProjectImages());
         return $this->render('portfolio/project_detail.html.twig', ['project' => $project]);
     }
 
@@ -101,11 +100,11 @@ class PortfolioController extends Controller
         $parsedown = new \Parsedown();
         if($request->getMethod() == 'POST'){
             $project = new Project();
-            $project->setName($request->get('projectName'));
-            $project->setSlug(self::slugify($project->getName()));
-            $project->setDescription($request->get('projectDescription'));
-            $project->setContent($parsedown->text($request->get('projectContent')));
-            $project->setImageUrl($request->get('projectThumbnail'));
+            $project->setName($request->get('projectName'))
+            ->setSlug(self::slugify($project->getName()))
+            ->setDescription($request->get('projectDescription'))
+            ->setContent($parsedown->text($request->get('projectContent')))
+            ->setImageUrl($request->get('projectThumbnail'));
             if($request->get('categories') != null){
                 foreach($project->getCategories() as $category){
                     $project->removeCategory($category);
@@ -128,10 +127,10 @@ class PortfolioController extends Controller
                 $languages = $request->get('projectLanguages');
                 $languages = explode(",", trim($languages));
             } else $languages = null;
-            $project->setLanguages($languages);
-            $project->setCreatedAt(new \DateTime());
-            $project->setProjectImages($request->get('imageUrls'));
-            $project->setProjectImagesDescription($request->get('imageDescriptions'));
+            $project->setLanguages($languages)
+            ->setCreatedAt(new \DateTime())
+            ->setProjectImages($request->get('imageUrls'))
+            ->setProjectImagesDescription($request->get('imageDescriptions'));
             $searchProject = $this->getDoctrine()->getRepository(Project::class)->findOneBy(['name' => $project->getName()]);
             if($searchProject == null || $project->getId() == $searchProject->getId()){
                 $em = $this->getDoctrine()->getManager();
@@ -164,6 +163,7 @@ class PortfolioController extends Controller
         $this->addFlash('success', "Le projet a bien été supprimé !");
         return $this->redirectToRoute('portfolio_list_projects');
     }
+
 
     static public function slugify($text)
     {
