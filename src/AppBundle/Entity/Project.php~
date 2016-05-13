@@ -74,6 +74,11 @@ class Project
     private $projectImagesDescription;
 
     /**
+     * @ORM\Column(name="languages", type="simple_array", nullable=true)
+     */
+    private $languages;
+
+    /**
      *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\ProjectPlatform", inversedBy="projects")
      */

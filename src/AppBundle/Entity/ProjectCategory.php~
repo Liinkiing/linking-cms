@@ -29,7 +29,7 @@ class ProjectCategory
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Project", mappedBy="platforms")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Project", mappedBy="categories")
      */
     private $projects;
 
