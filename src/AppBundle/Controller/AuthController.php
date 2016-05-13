@@ -30,12 +30,18 @@ class AuthController extends Controller
             }
 
         }
+
         return $this->render('auth/login.html.twig', ['last_username' => $lastUsername]);
 
     }
 
 
-
+    /**
+     * @Route("/logout", name="logout")
+     */
+    public function logoutAction(Request $request){
+        $this->addFlash('success', 'Vous avez bien été déconnecté');
+    }
 
 
     /**
