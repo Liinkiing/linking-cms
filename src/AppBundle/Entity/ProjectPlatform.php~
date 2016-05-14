@@ -145,6 +145,7 @@ class ProjectPlatform
     {
         return $this->projects;
     }
+<<<<<<< HEAD
 
     /**
      * Set slug
@@ -169,4 +170,6 @@ class ProjectPlatform
     {
         return $this->slug;
     }
+=======
+>>>>>>> cff32594b29abf9f1f53292fc4aa6d0939a2fdda
 }
